@@ -45,3 +45,22 @@ Perfecto. He desarrollado completamente la aplicación de lista de tareas CLI en
 * Encapsulación: miembros privados con getters públicos.
 * Const-correctness: métodos que no modifican el estado marcados como `const`.
 * Manejo de errores: validación de entrada, IDs inexistentes y descripciones vacías.
+
+## Preguntas
+
+### Analice la salida respecto a su UI/UX. Que opina del diseno en general? Haga un analisis rapido de heuristicas.
+
+En general esta bien, nada WOW pero cumple con lo que le pedi. En cuanto a las heuristicas:
+* Cumple parcialmente la visibilidad del estado del sistema, despues de las acciones se muestra un mensaje, pero faltaria un contador de tareas siempre visible.
+* En cuanto al control y libertad del usuario, no cumple, porque deberia permitir deshacer acciones.
+* Tampoco cumpleel principio de prevención de errores, porque solo hay mensajes de error cuando se cometen los errores.
+* No cumple tambien el principio de ayuda para reconocer, diagnosticar y recuperarse de errores, porque los mensajes aunque son claros, no te dan la solucion, o incluso se podria poner ejemplos.
+* Por ultimo, no cumple el principio de flexibilidad y eficiencia de uso, porque solo hay un menu, no hay atajos para usuarios expertos.
+
+### Analice el codigo generado por la IA. Que errores encuentra? Puede identificar alguna mejora? Cuales? Justifique
+
+Primero el codigo esta todo en un solo archivo, lo mejor seria separar la logica de la parte visual. Ademas, se estan mezclando tareas distintas en un mismo lugar, lo que rompe el principio de responsabilidad unica.
+
+Por otro lado, la generacion de IDs en Task hace que haya un estado global innecesario, es mejor que la clase TodoList se encargue de la generacion de IDs, o mejor aun, en un generador externo.
+
+Tambien seria mucho mejor que las funciones devuelvan un resultado en vez de imprimir directamente en la consola, y recien despues se decida que mostrar al usuario. Con eso incluso se puede mejorar la gestion de errores.
